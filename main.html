@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponyo Aesthetic</title>
+    <style>
+        /* Estilos Gerais */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .caixa1 {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .perfil {
+            background-color: rgba(245, 206, 147, 0.2);
+            width: 450px;
+            height: 600px;
+            border-radius: 20px;
+            position: relative;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 2;
+        }
+
+        /* Banner */
+        .imagem-topo {
+        width: 100%;
+        height: 140px;
+        background-size: cover;
+        background-position: center;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        }
+
+        /* Controles de áudio */
+        .audio-player {
+            width: 90%;
+            max-width: 400px;
+            padding: 10px;
+            background-color: rgba(245, 206, 147, 0.534);
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            align-items: center;
+        }
+
+        /* Miniaturas */
+        .miniaturas {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    position: relative;
+    top: 160px;
+    transition: all 0.5s ease;
+}
+.miniaturas {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    position: relative;
+    top: 160px;
+    transition: all 0.5s ease;
+}
+
+.miniaturas button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 12px; /* Mantém bordas arredondadas no botão */
+}
+
+.miniaturas button img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px; /* Mantém as bordas arredondadas na imagem */
+    object-fit: cover;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.miniaturas button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.miniaturas button img:hover {      
+    transform: scale(1.1); /* Aumenta a imagem sem perder a forma */
+    opacity: 0.9;
+}
+
+        /* Progress Bar */
+        #progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        #progress-bar::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background-color: #f5ce93;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #progress-bar::-webkit-slider-runnable-track {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        #progress-bar::-moz-range-thumb {
+            width: 12px;
+            height: 12px;
+            background-color: #f5ce93;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #progress-bar::-moz-range-track {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        /* Estilos dos Botões de Áudio */
+        .controls button {
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            cursor: pointer;
+            color: white;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .controls button:hover {
+            background-color: rgba(245, 206, 147, 0.7);
+            transform: scale(1.1);
+        }
+
+        /* Botão Toggle Theme - Estilo Separado */
+/* Botão Toggle Theme - Estilo Ajustado */
+/* Botão Toggle Theme - Estilo Ajustado com Emoji Centralizado */
+/* Botão Toggle Theme - Estilo Ajustado com Animação Suave */
+.toggle-theme-btn {
+    background-color: transparent; /* Fundo transparente */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Borda brilhante */
+    padding: 0; /* Remover qualquer preenchimento interno */
+    cursor: pointer;
+    color: white;
+    transition: all 0.5s ease; /* Transição suave para todas as propriedades */
+    border-radius: 50%; /* Tornando o botão circular */
+    font-size: 24px; /* Tamanho do emoji */
+    width: 40px; /* Tamanho do botão */
+    height: 40px; /* Tamanho do botão */
+    position: absolute; /* Posiciona o botão dentro da div */
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+    display: flex; /* Usar flexbox para centralizar o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+/* Efeito de Hover */
+.toggle-theme-btn:hover {
+    border-color: #f5ce93; /* Borda brilhante ao passar o mouse */
+    transform: scale(1.1); /* Leve aumento de tamanho */
+}
+
+/* Efeito de Focus */
+.toggle-theme-btn:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 47, 255, 0.5); /* Brilho azul ao focar */
+}
+
+/* Efeito de Click */
+.toggle-theme-btn:active {
+    background-color: transparent; /* Mantém fundo transparente ao clicar */
+    transform: scale(1);
+}
+
+/* Transição suave para o background e borda da div perfil */
+.perfil {
+    transition: background-color 0.5s ease, transform 0.5s ease; /* Suaviza a troca de fundo */
+}
+
+/* Miniaturas com transição suave */
+.miniaturas button {
+    transition: transform 0.5s ease, border-color 0.5s ease; /* Suaviza o aumento de tamanho e a troca de borda */
+}
+
+/* Banner com transição suave */
+.imagem-topo {
+    transition: background-image 0.5s ease; /* Suaviza a troca de imagem de fundo */
+}
+
+/* Vídeo de fundo com transição suave */
+video {
+    transition: opacity 0.5s ease; /* Suaviza a mudança na opacidade */
+}
+
+
+    </style>
+</head>
+<body>
+    <video autoplay muted loop id="background-video">
+        <source src="banner/bg_a.mp4" type="video/mp4">
+    </video>
+    <div class="caixa1">
+        <div class="perfil">
+            <div class="imagem-topo" id="banner" style="background-image: url('banner/bnr_a.gif');"></div>
+<div id="audio-title" style="text-align: center; font-size: 18px; color: white; display: none;">
+    01 - Deep Sea Ranch
+</div>
+
+            <div class="audio-player">
+                <audio id="audio-ponyo" src="audios/a_a.mp3"></audio>
+                <div class="time-display">
+                    <span id="current-time">0:00</span>
+                </div>
+                <input type="range" value="0" min="0" max="100" id="progress-bar">
+                <div class="controls">
+                    <button onclick="rewindAudio()">&#8592;</button>
+                    <button onclick="togglePlayPause()" id="playPauseBtn">&#9654;</button>
+                    <button onclick="forwardAudio()">&#8594;</button>
+                </div>
+            </div>
+
+            <div class="miniaturas">
+                <button id="mini1" onclick="playAudio('a_a')">
+                    <img src="miniaturas/m_a_a.jpg" alt="Miniatura 1">
+                </button>
+                <button id="mini2" onclick="playAudio('a_b')">
+                    <img src="miniaturas/m_a_b.jpg" alt="Miniatura 2">
+                </button>
+                <button id="mini3" onclick="playAudio('a_c')">
+                    <img src="miniaturas/m_a_c.jpg" alt="Miniatura 3">
+                </button>
+            </div>
+
+            <button class="toggle-theme-btn" onclick="toggleTheme()">🌠</button>
+        </div>
+    </div>
+
+    <script>
+        const audio = document.getElementById('audio-ponyo');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeDisplay = document.getElementById('current-time');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const banner = document.getElementById('banner');
+        const mini1 = document.getElementById('mini1');
+        const mini2 = document.getElementById('mini2');
+        const mini3 = document.getElementById('mini3');
+        const backgroundVideo = document.getElementById('background-video');
+
+        let isDefaultTheme = true;
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        function togglePlayPause() {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.innerHTML = "&#10074;&#10074;";
+            } else {
+                audio.pause();
+                playPauseBtn.innerHTML = "&#9654;";
+            }
+        }
+
+        function rewindAudio() {
+            audio.currentTime -= 5;
+        }
+
+        function forwardAudio() {
+            audio.currentTime += 5;
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            const progress = (audio.currentTime / audio.duration) * 100;
+            progressBar.value = progress;
+            currentTimeDisplay.textContent = formatTime(audio.currentTime);
+        });
+
+        progressBar.addEventListener('input', () => {
+            const newTime = (progressBar.value / 100) * audio.duration;
+            audio.currentTime = newTime;
+        });
+
+        function playAudio(audioFile) {
+    const audioSrc = {
+        a_a: 'audios/a_a.mp3',
+        a_b: 'audios/a_b.mp3',
+        a_c: 'audios/a_c.mp3',
+        b_a: 'audios/b_a.mp3',
+        b_b: 'audios/b_b.mp3',
+        b_c: 'audios/b_c.mp3'
+    };
+    audio.src = audioSrc[audioFile];
+    audio.play();
+    playPauseBtn.innerHTML = "&#10074;&#10074;"; // Altera o botão para o símbolo de pausa
+}
+
+
+        function toggleTheme() {
+    if (isDefaultTheme) {
+        // Alterações para o Tema B
+        mini1.querySelector("img").src = 'miniaturas/m_b_a.jpg';
+        mini2.querySelector("img").src = 'miniaturas/m_b_b.jpg';
+        mini3.querySelector("img").src = 'miniaturas/m_b_c.jpg';
+        banner.style.backgroundImage = "url('banner/bnr_b.gif')";
+        backgroundVideo.src = "banner/bg_b.mp4";
+        mini1.setAttribute('onclick', "playAudio('b_a')");
+        mini2.setAttribute('onclick', "playAudio('b_b')");
+        mini3.setAttribute('onclick', "playAudio('b_c')");
+
+        // Alterando a cor de fundo da div perfil para um roxo mais azulado
+        document.querySelector('.perfil').style.backgroundColor = 'rgba(7, 55, 99, 0.3)'; // Roxo azulado
+        
+        // Alterando a cor de fundo da div audio-player para corresponder ao tema
+        document.querySelector('.audio-player').style.backgroundColor = 'rgba(7, 55, 99, 0.3)'; // Roxo azulado
+    } else {
+        // Alterações para o Tema A
+        mini1.querySelector("img").src = 'miniaturas/m_a_a.jpg';
+        mini2.querySelector("img").src = 'miniaturas/m_a_b.jpg';
+        mini3.querySelector("img").src = 'miniaturas/m_a_c.jpg';
+        banner.style.backgroundImage = "url('banner/bnr_a.gif')";
+        backgroundVideo.src = "banner/bg_a.mp4";
+        mini1.setAttribute('onclick', "playAudio('a_a')");
+        mini2.setAttribute('onclick', "playAudio('a_b')");
+        mini3.setAttribute('onclick', "playAudio('a_c')");
+
+        // Revertendo a cor de fundo da div perfil para o valor original no tema A
+        document.querySelector('.perfil').style.backgroundColor = 'rgba(245, 206, 147, 0.2)'; // Cor original
+        
+        // Revertendo a cor de fundo da div audio-player para o valor original no tema A
+        document.querySelector('.audio-player').style.backgroundColor = 'rgba(245, 206, 147, 0.534)'; // Cor original
+    }
+    isDefaultTheme = !isDefaultTheme;
+}
+
+
+
+    </script>
+</body>
+</html>
